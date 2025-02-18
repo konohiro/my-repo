@@ -2,7 +2,7 @@ name: Compare functions
 on: push
 jobs:
   compare:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - run: printenv | grep '_FUNC'
         env:
