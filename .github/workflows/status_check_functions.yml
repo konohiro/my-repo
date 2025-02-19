@@ -1,0 +1,12 @@
+name: Status check functions
+on: push
+jobs:
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      # 終了ステータスがゼロ以外なので、かならずエラーが発生する
+      - run: exit 1 
+
+      # エラーが発生してもfailure関数により、このステップが実行される
+      - run: echo "Hello"
+        if: ${{ failure()}}
