@@ -1,0 +1,9 @@
+name: Conditions
+on: push
+jobs:
+  skip-or-run:
+    runs-on: ubuntu-latest
+    steps:
+      # ワークフロー実行IDに「1」が含まれていれば実行される
+      - run: echo "Hello"
+        if: ${{ contains(github.run_id, '1') }} 
