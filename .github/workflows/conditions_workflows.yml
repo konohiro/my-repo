@@ -1,0 +1,9 @@
+name: Conditions workflow
+on: push
+jobs:
+  skip-or-run:
+    # octocatアカウント以外は実行をスキップ
+    if: ${{ github.actor == 'octocat' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello"
