@@ -12,7 +12,7 @@ jobs:
         run: |
           {
             echo "result<<EOF"
-            ls -al .github/workflows/
+            cat .github/workflows/comment.yml
             echo "EOF"
           } >> "${GITHUB_OUTPUT}"
       - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
