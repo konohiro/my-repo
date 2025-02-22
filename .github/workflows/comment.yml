@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: source
         run: |
-          DELIM=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16) 
+          DELIM=$(uuidgen)
           {
               echo "result<<${DELIM}"
               cat .github/workflows/comment.yml
