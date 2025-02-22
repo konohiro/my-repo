@@ -5,17 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      contents: read
+      # contents: read
     steps:
       - uses: actions/checkout@v4
       - id: source
         run: |
-          DELIM=$(uuidgen)
           {
-              echo "result<<$DELIM"
-              cat .github/workflows/comment.yml
-              echo "$DELIM"
-            } >> "${GITHUB_OUTPUT}"
+            echo "result<<EOF"
+            cat .github/workflows/compare_functions.yml
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT}"
       - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
         env:
           RESULT: ${{ steps.source.outputs.result }}
