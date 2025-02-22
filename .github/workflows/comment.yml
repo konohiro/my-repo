@@ -9,7 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: source
-        run: echo "result=`ls -al .github/workflows/`" >> "${GITHUB_OUTPUT}"
+        run: sh
+          {
+            echo "result<<EOF"
+            ls -al .github/workflows/
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT}"
       - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
         env:
           RESULT: ${ steps.source.outputs.result }
