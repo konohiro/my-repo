@@ -12,9 +12,9 @@ jobs:
         run: |
           DELIM=$(uuidgen)
           {
-              echo "result<<${DELIM}"
+              echo "result<<$DELIM"
               cat .github/workflows/comment.yml
-              echo "${DELIM}"
+              echo "$DELIM"
             } >> "${GITHUB_OUTPUT}"
       - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
         env:
