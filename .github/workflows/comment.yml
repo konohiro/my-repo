@@ -5,9 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      # contents: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}"
+      - run: echo "RESLUT=`ls -al .github/workflows/`" >> "${GITHUB_OUTPUT}""
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESLUT}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
