@@ -8,6 +8,14 @@ jobs:
       # contents: read
     steps:
       - uses: actions/checkout@v4
-      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "Hello, ${GITHUB_ACTOR}!!"
+      - id: source
+        run: |
+          {
+            echo "result<<EOF"
+            cat .github/workflows/compare_functions.yml
+            echo "EOF"
+          } >> "${GITHUB_OUTPUT}"
+      - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
         env:
+          RESULT: ${{ steps.source.outputs.result }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
