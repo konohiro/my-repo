@@ -17,5 +17,5 @@ jobs:
           } >> "${GITHUB_OUTPUT}"
       - run: gh pr comment "${GITHUB_HEAD_REF}" --body "${RESULT}"
         env:
-          RESULT: ${ steps.source.outputs.result }
+          RESULT: ${{ steps.source.outputs.result }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
