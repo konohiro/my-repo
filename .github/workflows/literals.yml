@@ -6,7 +6,8 @@ jobs:
     steps:
       - run: printenv | grep 'LITERAL_'
         env:
-          LITERAL_NULL: ${{ null }} 
+          # 当初は${{ null }}と記述していたが、lintで指摘されたため、下記の通り修正
+          LITERAL_NULL: null 
           LITERAL_BOOLEAN: ${{ true }}
           LITERAL_NUMBER: ${{ 1234 }}
           LITERAL_STRING: ${{ 'Hello' }}

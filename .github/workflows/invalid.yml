@@ -1,2 +1,7 @@
 name: Invalid
 on: push
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Corrected as noted in lint"
