@@ -5,7 +5,7 @@ on:
       environment-name:
         type: environment
         default: test
-        required: falase
+        required: false
         description: Environment name
 jobs:
   print:
