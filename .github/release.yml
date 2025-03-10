@@ -3,10 +3,6 @@ changelog:
     - title: Enhancement
       labels:
         - enhancement
-    - title: Bug Fixes
-      labels:
-        - bug
-        - fixes
   exclude:
     labels:
       - dependencies
