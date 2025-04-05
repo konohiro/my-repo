@@ -6,7 +6,7 @@ jobs:
     steps:
       - id: dynamic
         run: |
-          json='{"runner":["ubuntu-lates","macos-latest"]}'
+          json='{"runner":["ubuntu-latest","macos-latest"]}'
           echo "json=${json}" >> "${GITHUB_OUTPUT}"
     outputs:
       matrix-json: ${{ steps.dynamic.outputs.json }}
