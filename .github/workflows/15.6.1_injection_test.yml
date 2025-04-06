@@ -1,0 +1,7 @@
+name: Injection
+on: pull_request
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.event.pull_request }}"
