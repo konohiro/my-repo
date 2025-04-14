@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 base64url() {
-  openssl enc -base64 -A | tr '+/''-_' | tr -d '='
+  openssl enc -base64 -A | tr '+/' '-_' | tr -d '='
 }
 
 sign() {
@@ -9,12 +9,12 @@ sign() {
 }
 
 # JWTの生成
-header="$(printf'{"alg":"RS256","typ":"JWT"}' | base64url)"
+header="$(printf '{"alg":"RS256","typ":"JWT"}' | base64url)"
 now="$(date '+%s')"
 iat="$((now - 60))"
 exp="$((now + (3 * 60)))"
 template='{"iss":"%s","iat":%s,"exp":%s}'
-payload="(printf "${template}" "${APP_ID}" "${iat}" "${exp}" | base64url)"
+payload="$(printf "${template}" "${APP_ID}" "${iat}" "${exp}" | base64url)"
 signature="$(printf '%s' "${header}.${payload}" | sign | base64url)"
 jwt="${header}.${payload}.${signature}"
 
@@ -28,7 +28,7 @@ installation_id="$(curl --location --silent --request GET \
   | jq -r '.id'
 )"
 
-# Access Token APIの実行
+# Access Tokens APIの実行
 token="$(curl --location --silent --request POST \
   --url "${GITHUB_API_URL}/app/installations/${installation_id}/access_tokens" \
   --header "Accept: application/vnd.github+json" \
